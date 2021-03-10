@@ -11,6 +11,7 @@ public:
 	int data;
 
 	Node(int value) {
+		// intialize each node to have "value" and two "sub-nodes" (left, right)
 		data = value;
 		left = NULL;
 		right = NULL;

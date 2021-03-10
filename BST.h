@@ -44,11 +44,13 @@ public:
 	*/
 	bool remove(int data);
 	bool removeFunction(Node*& tempRoot, int data);
+	void replace(Node*& oldRoot, Node*& tempRoot);
 
 	/*
 	* Removes all nodes from the tree, resulting in an empty tree.
 	*/
 	void clear();
+	void recursiveClear(Node*& tempRoot);
 
 protected:
 	Node *root;

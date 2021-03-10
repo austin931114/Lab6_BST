@@ -43,9 +43,11 @@ PrintBST
 2:  3 
 3:  4 
 4:  5 
+5:  8 
+6:  7 
 
-Remove 8 False
-Remove 7 False
+Remove 8 True
+Remove 7 True
 PrintBST
 0:  1 
 1:  2 

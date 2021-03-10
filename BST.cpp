@@ -71,46 +71,77 @@ using namespace std;
 	bool BST::remove(int data) {
 		return removeFunction(root ,data);
 	}
+
 	bool BST::removeFunction(Node*& tempRoot, int data) {
 		if (tempRoot == NULL) {
 			return false;
 		}
 		else {
 			if (data < tempRoot->data) {
-			return removeFunction(tempRoot->left, data);
-		}
+				return removeFunction(tempRoot->left, data);
+		  }
 			else if (data > tempRoot->data) {
 				return removeFunction(tempRoot->right, data);
 			}
 			else { // item is the tempRoot
 				Node* oldRoot = tempRoot;
-				if (tempRoot->left == NULL && tempRoot->left == NULL) { // no children
-					delete tempRoot;
-					tempRoot = NULL;
-					numItem--;
-					// delete oldRoot;
-					return true;
-				}
-				else if (tempRoot->left == NULL) {
+				// if (tempRoot->left == NULL && tempRoot->left == NULL) { // no children
+				// 	cout << "remove no children " << data << endl;
+				// 	// delete tempRoot;
+				// 	tempRoot = NULL;
+				// 	numItem--;
+				// 	// delete oldRoot;
+				// 	// return true;
+				// }
+				// else 
+				if (tempRoot->left == NULL) {
+						cout << "remove one child " << data << endl;
 						tempRoot = tempRoot->right;
 						numItem--;
-						delete tempRoot->right;
-						// delete oldRoot;
-						return true;
+						// delete tempRoot->right;
+						delete oldRoot;
+						// return true;
 				}
 				else if (tempRoot->right == NULL) {
+					cout << "remove one child" << data << endl;
 					tempRoot = tempRoot->left;
 					numItem--;
-					delete tempRoot->left;
-					// delete oldRoot;
-					return true;
+					// delete tempRoot->left;
+					delete oldRoot;
+					// return true;
 			}
+			else {
+				cout << "remove 2 children " << data << endl;
+				replace(oldRoot, tempRoot->left);
+				// return true;
+			}
+			//delete oldRoot;
+			return true;
 	}
 	}
+	}
+
+	void BST::replace(Node*& oldRoot, Node*& tempRoot) {
+		if (tempRoot->right != NULL) {
+			replace(oldRoot, tempRoot->right);
+		}
+		else {
+			oldRoot->data = tempRoot->data;
+			removeFunction(oldRoot->left, tempRoot->data);
+		}
 	}
 	/*
 	* Removes all nodes from the tree, resulting in an empty tree.
 	*/
 	void BST::clear() {
-		
+		recursiveClear(root);
+		root = NULL;
+	}
+
+	void BST::recursiveClear(Node*& tempRoot) {
+		if (tempRoot != NULL) {
+			recursiveClear(tempRoot->left);
+			recursiveClear(tempRoot->right);
+			delete tempRoot;
+		}
 	}

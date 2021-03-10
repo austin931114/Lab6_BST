@@ -11,7 +11,7 @@ using namespace std;
 	* @return the data that is stored in this node.
 	*/
 	int Node::getData() const {
-
+		return data;
 	}
 
 	/*
@@ -19,8 +19,8 @@ using namespace std;
 	*
 	* @return the left child of this node or null if it doesn't have one.
 	*/
-	Node * Node::getLeftChild() const{
-		
+	Node * Node::getLeftChild() const {
+		return left;
 	}
 
 	/*
@@ -29,5 +29,5 @@ using namespace std;
 	* @return the right child of this node or null if it doesn't have one.
 	*/
 	Node * Node::getRightChild() const{
-		
+		return right;
 	}

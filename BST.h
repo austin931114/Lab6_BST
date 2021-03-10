@@ -15,6 +15,7 @@ public:
 		root = NULL;
 	}
 	~BST() {clear();}
+	int numItem = 0;
 
 	//Please note that the class that implements this interface must be made
 	//of objects which implement the NodeInterface
@@ -33,6 +34,7 @@ public:
 	* @return false if unsuccessful (i.e. the int is already in tree)
 	*/
 	bool add(int data);
+	bool addFunction(Node*& temp, int data);
 
 	/*
 	* Attempts to remove the given int from the BST tree
@@ -41,6 +43,7 @@ public:
 	* @return false if remove is unsuccessful(i.e. the int is not in the tree)
 	*/
 	bool remove(int data);
+	bool removeFunction(Node*& tempRoot, int data);
 
 	/*
 	* Removes all nodes from the tree, resulting in an empty tree.
@@ -49,6 +52,7 @@ public:
 
 protected:
 	Node *root;
+
 };
 // #include "NodeInterface.h"
 // #include "Node.h"
@@ -98,4 +102,4 @@ protected:
 // 	*/
 // 	void clear();
 // 	// void clear_function(Node* n);
-// };
+// }; 

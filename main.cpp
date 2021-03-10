@@ -3,6 +3,7 @@
 #include <sstream>
 #include <queue>
 #include "BST.h"
+using namespace std;
 
 const int NUM_FILES = 5; // the total number of files to be read from
 
@@ -25,6 +26,11 @@ int main() {
 	std::ofstream ofs; // create the output stream to write to an output file
 	std::string temp; // used to store the current instruction
 	BST* bstptr = NULL;//the BST
+
+	// bstptr = new BST();
+	// bstptr->add(1);
+	// cout << BSTtoString(bstptr) << endl;
+
 
 	for (int i = 0; i < NUM_FILES; i++) {
 		ifs.open(fileArray[i]); // open the file to read from
@@ -51,6 +57,8 @@ int main() {
 		ofs.close();
 	}
 	std::cout << "end" << std::endl; // indicate that the program has successfuly executed all instructions
+
+
 	return 0;
 }
 

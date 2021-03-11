@@ -37,6 +37,13 @@ using namespace std;
 	bool BST::addFunction(Node*& temp, int data) {
 		/* 
 		The node *& is a reference to a pointer 
+
+		Ex:
+		int a =5
+		int& b = a;
+		b = 7;
+		because b is a reference to a, so a will also become 7
+
 		(change the memory address pointed to by the pointer), 
 		whereas node* is simply a pointer.  
 		*/
@@ -89,7 +96,9 @@ using namespace std;
 				if (tempRoot->left == NULL) {
 						// cout << "remove one child " << data << endl;
 						tempRoot = tempRoot->right;
-						//* set the parent of tempRoot ro reference to "right child"
+						// because tempRoot is a reference to its partent
+						// when tempRoot set to right, its parent will reference to right
+						// and omit tempRoot
 						numItem--;
 						delete oldRoot; // prevent memory leak
 				}

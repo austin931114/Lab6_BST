@@ -40,7 +40,7 @@ using namespace std;
 		(change the memory address pointed to by the pointer), 
 		whereas node* is simply a pointer.  
 		*/
-		if(temp == NULL) {
+		if(temp == NULL) { // previous temp does not have "child"
 			// cout << "add valuye" << endl;
 			temp = new Node(data);
 			numItem++;
@@ -73,7 +73,7 @@ using namespace std;
 	}
 
 	bool BST::removeFunction(Node*& tempRoot, int data) {
-		if (tempRoot == NULL) {
+		if (tempRoot == NULL) { // root does not exist
 			return false;
 		}
 		else {
@@ -84,34 +84,24 @@ using namespace std;
 				return removeFunction(tempRoot->right, data);
 			}
 			else { // item is the tempRoot
-				Node* oldRoot = tempRoot;
-				// if (tempRoot->left == NULL && tempRoot->left == NULL) { // no children
-				// 	cout << "remove no children " << data << endl;
-				// 	// delete tempRoot;
-				// 	tempRoot = NULL;
-				// 	numItem--;
-				// 	// delete oldRoot;
-				// 	// return true;
-				// }
-				// else 
+				Node* oldRoot = tempRoot; // copy root to prevent memory mulfunction
+
 				if (tempRoot->left == NULL) {
-						cout << "remove one child " << data << endl;
+						// cout << "remove one child " << data << endl;
 						tempRoot = tempRoot->right;
+						//* set the parent of tempRoot ro reference to "right child"
 						numItem--;
-						// delete tempRoot->right;
-						delete oldRoot;
-						// return true;
+						delete oldRoot; // prevent memory leak
 				}
 				else if (tempRoot->right == NULL) {
-					cout << "remove one child" << data << endl;
+					// cout << "remove one child" << data << endl;
 					tempRoot = tempRoot->left;
+					//* set the parent of tempRoot ro reference to "left child"
 					numItem--;
-					// delete tempRoot->left;
 					delete oldRoot;
-					// return true;
 			}
 			else {
-				cout << "remove 2 children " << data << endl;
+				// cout << "remove 2 children " << data << endl;
 				replace(oldRoot, tempRoot->left);
 				// return true;
 			}
@@ -122,11 +112,14 @@ using namespace std;
 	}
 
 	void BST::replace(Node*& oldRoot, Node*& tempRoot) {
+		// find right most root, because right most root is the biggest value that smaller than oldRoot
 		if (tempRoot->right != NULL) {
 			replace(oldRoot, tempRoot->right);
 		}
 		else {
+			// set the oldRoot value to right most root's value
 			oldRoot->data = tempRoot->data;
+			// remove the right most root
 			removeFunction(oldRoot->left, tempRoot->data);
 		}
 	}
@@ -140,6 +133,7 @@ using namespace std;
 
 	void BST::recursiveClear(Node*& tempRoot) {
 		if (tempRoot != NULL) {
+			// clear from small value to large value
 			recursiveClear(tempRoot->left);
 			recursiveClear(tempRoot->right);
 			delete tempRoot;
